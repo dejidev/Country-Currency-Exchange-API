@@ -1,10 +1,6 @@
-require('dotenv').config();
-const mysql = require('mysql2/promise');
-
 // // Database connection pool
 // const pool = mysql.createPool({
 //   // host: process.env.DB_HOST || 'localhost',
-//   host: process.env.DB_HOST || 'yamabiko.proxy.rlwy.net',
 //   user: process.env.DB_USER || 'root',
 //   password: process.env.DB_PASSWORD || 'oluwatobi@2002',
 //   database: process.env.DB_NAME || 'country_db',
@@ -15,22 +11,22 @@ const mysql = require('mysql2/promise');
 //   keepAliveInitialDelay: 0
 // });
 
+const mysql = require('mysql2/promise');
+
 const pool = mysql.createPool({
-  // host: process.env.MYSQLHOST,
-  // user: process.env.MYSQLUSER,
-  // password: process.env.MYSQLPASSWORD,
-  // database: process.env.MYSQLDATABASE,
-  // port: process.env.MYSQLPORT,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  ssl: { rejectUnauthorized: false }, // Railway requires this for secure TLS
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT,
+  ssl: {
+    rejectUnauthorized: false,
+  },
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
 });
+
 
 
 // Initialize database tables
